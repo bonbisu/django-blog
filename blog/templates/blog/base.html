@@ -1,0 +1,29 @@
+{% load static %}
+<html>
+
+    <head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        
+        <title>Bonbisu's Blog</title>
+    </head>
+
+    <body>
+        <div class="page-header">
+            <h1><a href="/">Bonbisu's Blog</a></h1>
+            <h4>Tech, Diy and Random Things</h4>
+        </div>
+
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                {% block content %}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
