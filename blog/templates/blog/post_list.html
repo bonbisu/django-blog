@@ -1,102 +1,13 @@
-{% load static %}
-<html>
+{% extends 'blog/base.html' %}
 
-<head>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-<!-- css not loading, just styling inside yet -->
-    <style>
-
-h1 a {
-    color: #FCA205;
-    font-family: 'Staatliches';
-}
-
-.page-header {
-    text-align: center;
-    background-color: #99e699;
-    margin-top: 0;
-    padding: 20px 20px 20px 40px;
-}
-
-.page-header h4 {
-    margin-top: 0px;
-}
-
-.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
-    color: #ffffff;
-    font-size: 36pt;
-    text-decoration: none;
-}
-
-.content {
-    margin-left: 40px;
-}
-
-h1, h2, h3, h4 {
-    font-family: 'Staatliches', cursive;
-}
-
-.date {
-    color: #828282;
-}
-
-.save {
-    float: right;
-}
-
-.post-form textarea, .post-form input {
-    width: 100%;
-}
-
-.top-menu, .top-menu:hover, .top-menu:visited {
-    color: #ffffff;
-    float: right;
-    font-size: 26pt;
-    margin-right: 20px;
-}
-
-.post {
-    margin-bottom: 70px;
-}
-
-.post h1 a, .post h1 a:visited {
-    color: #000000;
-}
-
-.date p {
-    color: #828282;
-    font-style: italic;
-}
-    
-    </style>
-
-    <title>Bonbisu's Blog</title>
-</head>
-
-<body>
-    <div class="page-header">
-        <h1><a href="/">Bonbisu's Blog</a></h1>
-        <h4>Tech, Diy and Random Things</h4>
-    </div>
-
-    <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-                    {% for post in posts %}
-                        <div class="post">
-                            <h1><a href="">{{ post.title }}</a></h1>
-                                <div class="date">
-                                    <p>Publicado em: {{ post.published_at }}</p>
-                                </div>
-                            <p>{{ post.text|linebreaksbr }}</p>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
+{% block content %}
+    {% for post in posts %}
+    <div class="post">
+        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+        <div class="date">
+            <p>Publicado em: {{ post.published_at }}</p>
         </div>
-</body>
-
-</html>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+    {% endfor %}
+{% endblock %}
