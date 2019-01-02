@@ -5,9 +5,10 @@
     <div class="post">
         <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
         <div class="date">
-            <p>Publicado em: {{ post.published_at }}</p>
+            <p id="off">{{ post.published_at }}</p>
         </div>
         <p>{{ post.text|linebreaksbr }}</p>
+        <p id="off">_ _ _ _ _ _ _ _ _ _ _ _ _ _</p>
     </div>
     {% endfor %}
 {% endblock %}
