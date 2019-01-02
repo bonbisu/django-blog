@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+{% if post.published_at %}
+    <div class="post">
+        <h1><a href="">{{ post.title }}</a></h1>
+            <div class="date">
+                <p>Publicado em: {{ post.published_at }}</p>
+            </div>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+{% else %}
+<h1>Post não encontrado! =(</h1>
+{% endif %}
+{% endblock %}
