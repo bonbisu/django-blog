@@ -7,7 +7,8 @@
         <div class="date">
             <p id="off">{{ post.published_at }}</p>
         </div>
-        <p>{{ post.text|linebreaksbr }}</p>
+        <p>{{ post.text|linebreaksbr|truncatechars:1000 }}</p>
+        <a href="{% url 'post_detail' pk=post.pk %}" id="off">Leia mais</a>
     </div>
     <!-- <p id="off">_ _ _ _ _ _ _ _ _ _ _ _ _ _</p> -->
     {% endfor %}
