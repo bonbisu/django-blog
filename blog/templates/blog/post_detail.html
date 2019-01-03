@@ -5,17 +5,17 @@
         <h1><a href="">{{ post.title }}</a></h1>
         {% if user.is_authenticated %}
             <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-            <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
             <a class="btn btn-danger" href="{% url 'post_delete' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-
+            {% if not post.published_at %}
+                <a class="btn btn-warning" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+            {% else %}
+                <a class="btn btn-success" href="">Published</a>
+                <div class="date">
+                    <p id="off">{{ post.published_at }}</p>
+                </div>
+            {% endif %}            
         {% endif %}
         <p>{{ post.text|linebreaksbr }}</p>
-        {% if post.published_at %}
-            <div class="date">
-                <p id="off">{{ post.published_at }}</p>
-            </div>
-        {% else %}
 
     </div>
-{% endif %}
 {% endblock %}
