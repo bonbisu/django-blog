@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <div class="post col-md-11">
+    <div class="post">
         <h1><a href="">{{ post.title }}</a></h1>
         {% if user.is_authenticated %}
             <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
@@ -16,6 +16,30 @@
             {% endif %}            
         {% endif %}
         <p>{{ post.text|linebreaksbr }}</p>
-
     </div>
+    <hr>
+    <div class="container">
+
+        <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+
+        {% for comment in post.comments.all %}
+            {% if user.is_authenticated or comment.approved_comment %}
+            <div class="comment">
+                <div class="date">
+                    {{ comment.created_date }}
+                </div>
+
+                <strong>{{ comment.author }}</strong>
+                {% if not comment.approved_comment %}
+                        <a class="btn btn-default" href="{% url 'comment_delete' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+                    {% endif %} 
+                <p>{{ comment.text|linebreaks }}</p>
+            </div>
+            {% endif %}
+        {% empty %}
+            <p>No comments here yet :(</p>
+        {% endfor %}
+    </div>
+    <br><br><br>
 {% endblock %}

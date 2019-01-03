@@ -10,7 +10,9 @@
             <p class="text-muted" id="off">{{ post.author }} - {{ post.published_at }}</p>
         </div>
         <p>{{ post.text|linebreaksbr|truncatechars:1000 }}</p>
-        <a href="{% url 'post_detail' pk=post.pk %}" class="text-muted">Leia mais</a>
+        <a href="{% url 'post_detail' pk=post.pk %}" class="text-muted">Leia mais |</a>
+        <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
+
     </div>
     <!-- <p id="off">_ _ _ _ _ _ _ _ _ _ _ _ _ _</p> -->
     {% endfor %}
